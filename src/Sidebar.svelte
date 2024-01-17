@@ -32,7 +32,7 @@
 
 <Container>
 	<AsyncWrapper awaitable={() => loadIndex()} let:dataFromAwaitable>
-        <Flex direction="column" gap="xs" >
+        <Flex override={{overflow:'auto',maxHeight:'82vh'}} direction="column" gap="xs" >
             <div class="topspace"/>
             <TreeNav indent={0} items={dataFromAwaitable}/>
         </Flex>

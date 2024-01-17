@@ -13,14 +13,12 @@
 <style>
 </style>
 
-<div>
 
-	{#await _awaitable()}
-		<Loader />
-	{:then _ignoreResult}
-		<slot {dataFromAwaitable}/>
-	{:catch error}
-		<p style="color: red">{error.message}</p>
-	{/await}
+{#await _awaitable()}
+	<Loader />
+{:then _ignoreResult}
+	<slot {dataFromAwaitable}/>
+{:catch error}
+	<p style="color: red">{error.message}</p>
+{/await}
 
-</div>

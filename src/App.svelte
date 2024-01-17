@@ -130,7 +130,8 @@
 
     .svlt0-sidebar {
         min-width:  min-content;
-        max-width:  20%;
+        /*max-width:  20%;*/
+        width:  20%;
         height: 100%;
         overflow: auto;
     }

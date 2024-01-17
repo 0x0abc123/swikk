@@ -9,3 +9,19 @@
       name: Lorem Ipsum Content
     - path: 02-02-test4.md
       name: Test Page 4
+- path: 05_query.md
+  name: Long Content Example
+- path: 02-test2.md
+  name: Repeated Links
+  children:
+    - path: 02-01-test3.md
+      name: More Content
+    - path: 02-02-test4.md
+      name: Spiffy Wildebeest
+- path: 02-test2.md
+  name: Relentless-Cotton
+  children:
+    - path: 02-01-test3.md
+      name: Disastrous
+    - path: 02-02-test4.md
+      name: Director of Things

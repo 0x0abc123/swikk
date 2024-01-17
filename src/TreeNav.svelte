@@ -1,21 +1,24 @@
-<script context="module">
-	// retain module scoped expansion state for each tree node
-	const _expansionState = false
-</script>
-
 <script>
-    import { slide, fade } from 'svelte/transition';
 	import { Flex, Space, Anchor } from '@svelteuidev/core';
+	import { writable } from "svelte/store"
 
 	export let items;
-
 	export let indent;
 
-	let expanded = _expansionState || false
-	const toggleExpansion = () => {
-		expanded = !expanded
+	let toggled = false;
+
+	const toggleExpansion = (item) => {
+		if (item['expanded']) {
+			item['expanded'] = false;
+		} else {
+			item['expanded'] = true;
+		}
+		toggled = !toggled;
 	}
-	$: arrowDown = expanded
+
+	let isExpanded = (item) => {
+		return item['expanded']
+	}
 </script>
 
 <style>
@@ -50,23 +53,25 @@
 </style>
 
 <ul>
+	{#key toggled}
     {#each items as item}
     <li>
 		<Flex>
 		<Space w={indent} />
-        <span transition:fade={{ duration: 150 }}>
-            <Anchor size='sm' override={{textDecoration: 'none'}} href={'#'+item['path']}>{item['name']}</Anchor>
+        <span>
+		<Anchor size='sm' override={{textDecoration: 'none'}} href={'#'+item['path']}>{item['name']}</Anchor>
             {#if (item['children']) }
-            <span transition:slide on:click={toggleExpansion} class="arrow" class:arrowDown>&#x203a;</span>
+            <span on:click={toggleExpansion(item)} class="arrow" class:arrowDown={isExpanded(item)}>&#x203a;</span>
             {:else}
             <span class="no-arrow"/>
             {/if}
         </span>
 		</Flex>
 		<hr/>
-        {#if expanded && (item['children']) }
+        {#if isExpanded(item) && item['children'] }
             <svelte:self indent={indent+8} items={item['children']}/>
         {/if}    
 	</li>
     {/each}
+	{/key}
 </ul>

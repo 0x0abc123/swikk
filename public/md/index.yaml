@@ -1,0 +1,11 @@
+- path: _home.md
+  name: Home
+- path: 01-test1.md
+  name: First Page
+- path: 02-test2.md
+  name: Example Longer Title
+  children:
+    - path: 02-01-test3.md
+      name: Lorem Ipsum Content
+    - path: 02-02-test4.md
+      name: Test Page 4
